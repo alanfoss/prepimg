@@ -25,12 +25,13 @@ MAXWIDTH=598
 set -e
 
 create_dir() {
-    mkdir -p "${READY}" || true
+    mkdir -p "${SCREENSHOTS}" || true
 }
 
 process_img() {
     # verify that file is an image file, and then get dimensions
     if file "${SCREENSHOTS}"/"${1}" | grep -qE 'image|bitmap'; then
+	[[ $VERBOSE -gt 0 ]] && echo "${1} is an image"
 	W=$(identify -format %w "${SCREENSHOTS}"/"${1}")
     else
 	echo "File ${SCREENSHOTS}/${1} is not an image."
@@ -43,6 +44,11 @@ process_img() {
 	[[ $VERBOSE -gt 0 ]] && echo "${1} is ${W} - reducing"
 	convert -resize "${MAXWIDTH}" \
 		-bordercolor $BORDER \
+		-border 1 \
+		"${SCREENSHOTS}"/"${1}" \
+		"${READY}"/"${1}"
+    else
+	convert -bordercolor $BORDER \
 		-border 1 \
 		"${SCREENSHOTS}"/"${1}" \
 		"${READY}"/"${1}"
@@ -75,6 +81,14 @@ done
 
 # main
 create_dir
+
+if [ -z "$(ls -A ${SCREENSHOTS})" ]
+then
+    echo "No images found."
+    exit
+else
+    mkdir -p "${READY}" || true
+fi
 
 for i in "${SCREENSHOTS}"/*.???; do
     process_img "`basename "${i}"`"
