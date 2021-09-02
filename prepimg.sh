@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 
-## "prepimg.sh"
-## written by Alan Formy-Duval
-## August 10, 2021
+########################################################################
+A script to prepare images (screenshots) for inclusion in articles to
+be submitted to opensource.com for publication. It does the following
+  - reduces width to meet OSDC 600 pixel limit
+  - adds a border 
+  - places finished images into a "Ready" directory
+AUTHOR='Alan Formy-Duval'
+CREATED='August 10, 2021'
+UPDATED='September 2, 2021'
+VERSION='0.2'
+########################################################################
 
-## prepares screenshot images for inclusion in opensource.com articles
-## checks the width and reduces as needed
-## adds a border
-## filenames are prepended with Ready after processing
 
-## Screenshots should be created using GNOME extension - Screenshot Tool
+## To make file handling a little easier, I recommend using the GNOME
+## extension named Screenshot Tool. It allows configuration of the
+## directory location where screenshots will be saved.
 ## Reference: https://extensions.gnome.org/extension/1112/screenshot-tool/
-## configured to save screenshots to the directory shown below:
+## For this script, configure to save screenshots in the directory shown below:
 SCREENSHOTS=${SCREENSHOTS:-"$HOME/Pictures/Screenshots"}
 READY=${READY:-"$SCREENSHOTS/Ready"}
 BORDER=${BORDER:-black}
