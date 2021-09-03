@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 ########################################################################
-A script to prepare images (screenshots) for inclusion in articles to
-be submitted to opensource.com for publication. It does the following
-  - reduces width to meet OSDC 600 pixel limit
-  - adds a border 
-  - places finished images into a "Ready" directory
+## A script to prepare images (screenshots) for inclusion in articles to
+## be submitted to opensource.com for publication. It does the following
+##   - reduces width to meet OSDC 600 pixel limit
+##   - adds a border 
+##   - places finished images into a "Ready" directory
 AUTHOR='Alan Formy-Duval'
 CREATED='August 10, 2021'
-UPDATED='September 2, 2021'
-VERSION='0.2'
+UPDATED='September 3, 2021'
+VERSION='0.3'
 ########################################################################
 
 
