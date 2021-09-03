@@ -9,7 +9,7 @@
 AUTHOR='Alan Formy-Duval'
 CREATED='August 10, 2021'
 UPDATED='September 3, 2021'
-VERSION='0.3'
+VERSION='0.4'
 ########################################################################
 
 
