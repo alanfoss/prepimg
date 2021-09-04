@@ -9,7 +9,7 @@
 AUTHOR='Alan Formy-Duval'
 CREATED='August 10, 2021'
 UPDATED='September 3, 2021'
-VERSION='0.4'
+VERSION='0.5'
 ########################################################################
 
 
@@ -36,6 +36,7 @@ create_dir() {
 
 process_img() {
     # verify that file is an image file, and then get dimensions
+    # consider output of file -b --mime-type
     if file "${SCREENSHOTS}"/"${1}" | grep -qE 'image|bitmap'; then
 	[[ $VERBOSE -gt 0 ]] && echo "${1} is an image"
 	W=$(identify -format %w "${SCREENSHOTS}"/"${1}")
@@ -63,6 +64,7 @@ process_img() {
 
 show_help() {
  echo " " 
+ echo "$0 Version $VERSION - written by $AUTHOR"
  echo "$0 [OPTIONS]"     
  echo "--verbose, -v     Be verbose"
  echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
@@ -72,38 +74,14 @@ show_help() {
 }
 
 ## parse opts
-# while [ True ]; do
-#if [ "$1" = "--help" -o "$1" = "-h" ]; then
-#    echo " "
-#    echo "$0 [OPTIONS]"
-#    echo "--verbose, -v     Be verbose"
-#    echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
-#    echo "--border, -b      Border color (default: black)"
-#    echo " "
-#    exit
-#elif [ "$1" = "--verbose" -o "$1" = "-v" ]; then
-#    VERBOSE=1
-#    shift 1
-#elif [ "$1" = "--directory" -o "$1" = "-d" ]; then
-#    SCREENSHOTS="${2}"
-#    shift 2
-#elif [ "$1" = "--border" -o "$1" = "-b" ]; then
-#    BORDER="${2}"
-#    shift 2
-#else
-#    break
-#fi
-#done
 
-## parse opts from getopts
-while getopts "vd:b:h" option
-do
- case $option in
-  v) VERBOSE=1 ;;
-  d) SCREENSHOTS=$OPTARG ;;
-  b) BORDER=$OPTARG ;;
-  h) show_help ;;
-  *) ;;
+while [ True ]; do
+ case $1 in
+   -h| --help) show_help ;;
+   -v| --verbose) VERBOSE=1; shift 1 ;;
+   -d| --directory) SCREENSHOTS=$2; shift 2 ;;
+   -b| --border) BORDER=$2; shift 2 ;;
+   *) break ;;
  esac
 done
 
