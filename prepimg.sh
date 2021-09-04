@@ -61,28 +61,50 @@ process_img() {
     fi
 }
 
+show_help() {
+ echo " " 
+ echo "$0 [OPTIONS]"     
+ echo "--verbose, -v     Be verbose"
+ echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
+ echo "--border, -b      Border color (default: $BORDER)"
+ echo " "
+ exit
+}
+
 ## parse opts
-while [ True ]; do
-if [ "$1" = "--help" -o "$1" = "-h" ]; then
-    echo " "
-    echo "$0 [OPTIONS]"
-    echo "--verbose, -v     Be verbose"
-    echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
-    echo "--border, -b      Border color (default: black)"
-    echo " "
-    exit
-elif [ "$1" = "--verbose" -o "$1" = "-v" ]; then
-    VERBOSE=1
-    shift 1
-elif [ "$1" = "--directory" -o "$1" = "-d" ]; then
-    SCREENSHOTS="${2}"
-    shift 2
-elif [ "$1" = "--border" -o "$1" = "-b" ]; then
-    BORDER="${2}"
-    shift 2
-else
-    break
-fi
+# while [ True ]; do
+#if [ "$1" = "--help" -o "$1" = "-h" ]; then
+#    echo " "
+#    echo "$0 [OPTIONS]"
+#    echo "--verbose, -v     Be verbose"
+#    echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
+#    echo "--border, -b      Border color (default: black)"
+#    echo " "
+#    exit
+#elif [ "$1" = "--verbose" -o "$1" = "-v" ]; then
+#    VERBOSE=1
+#    shift 1
+#elif [ "$1" = "--directory" -o "$1" = "-d" ]; then
+#    SCREENSHOTS="${2}"
+#    shift 2
+#elif [ "$1" = "--border" -o "$1" = "-b" ]; then
+#    BORDER="${2}"
+#    shift 2
+#else
+#    break
+#fi
+#done
+
+## parse opts from getopts
+while getopts "vd:b:h" option
+do
+ case $option in
+  v) VERBOSE=1 ;;
+  d) SCREENSHOTS=$OPTARG ;;
+  b) BORDER=$OPTARG ;;
+  h) show_help ;;
+  *) ;;
+ esac
 done
 
 # main
