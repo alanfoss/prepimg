@@ -8,8 +8,8 @@
 ##   - places finished images into a "Ready" directory
 AUTHOR='Alan Formy-Duval'
 CREATED='August 10, 2021'
-UPDATED='September 3, 2021'
-VERSION='0.5'
+UPDATED='September 13, 2021'
+VERSION='0.6'
 ########################################################################
 
 
@@ -68,6 +68,7 @@ show_help() {
  echo "$0 [OPTIONS]"     
  echo "--verbose, -v     Be verbose"
  echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
+ echo "--ready, -r       Ready directory (default: $READY)"
  echo "--border, -b      Border color (default: $BORDER)"
  echo " "
  exit
@@ -79,7 +80,8 @@ while [ True ]; do
  case $1 in
    -h| --help) show_help ;;
    -v| --verbose) VERBOSE=1; shift 1 ;;
-   -d| --directory) SCREENSHOTS=$2; shift 2 ;;
+   -d| --directory) SCREENSHOTS=$2; READY=$2/Ready; shift 2 ;;
+   -r| --ready) READY=$2/Ready; shift 2 ;;
    -b| --border) BORDER=$2; shift 2 ;;
    *) break ;;
  esac
