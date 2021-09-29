@@ -8,8 +8,8 @@
 ##   - places finished images into a "Ready" directory
 AUTHOR='Alan Formy-Duval'
 CREATED='August 10, 2021'
-UPDATED='September 13, 2021'
-VERSION='0.6'
+UPDATED='September 29, 2021'
+VERSION='0.7'
 ########################################################################
 
 
@@ -63,9 +63,8 @@ process_img() {
 }
 
 show_help() {
- echo " " 
- echo "$0 Version $VERSION - written by $AUTHOR"
- echo "$0 [OPTIONS]"     
+ echo "$(basename $0) Version $VERSION - written by $AUTHOR"
+ echo "$(basename $0) [OPTIONS]"     
  echo "--verbose, -v     Be verbose"
  echo "--directory, -d   Screenshot directory (default: $SCREENSHOTS)"
  echo "--ready, -r       Ready directory (default: $READY)"
