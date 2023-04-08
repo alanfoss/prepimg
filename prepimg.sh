@@ -6,18 +6,14 @@
 ##   - reduces width to meet OSDC 600 pixel limit
 ##   - adds a border 
 ##   - places finished images into a "Ready" directory
+## !! Requires the package ImageMagick !!
 AUTHOR='Alan Formy-Duval'
 CREATED='August 10, 2021'
-UPDATED='September 29, 2021'
-VERSION='0.7'
+UPDATED='April 7, 2023'
+VERSION='0.8'
 ########################################################################
 
-
-## To make file handling a little easier, I recommend using the GNOME
-## extension named Screenshot Tool. It allows configuration of the
-## directory location where screenshots will be saved.
-## Reference: https://extensions.gnome.org/extension/1112/screenshot-tool/
-## For this script, configure to save screenshots in the directory shown below:
+## By default, the GNOME Desktop saves screenshots in the directory shown below:
 SCREENSHOTS=${SCREENSHOTS:-"$HOME/Pictures/Screenshots"}
 READY=${READY:-"$SCREENSHOTS/Ready"}
 BORDER=${BORDER:-black}

@@ -7,7 +7,9 @@ This script does the following:
 + reduces width to meet OSDC 600 pixel width limit
 + adds a 1 pixel border of specified color
 + places finished images into a "Ready" directory
-  
+
+This script relies on utilities provided by the package ImageMagick.
++ Fedora - dnf info imagemagick  
 ___
 
 ## PEOPLE ##
